@@ -1,0 +1,14 @@
+% Rule to solve Tower of Hanoi
+% hanoi(NumberOfDiscs, SourcePeg, TargetPeg, AuxiliaryPeg, Moves)
+
+hanoi(1, Source, Target, _, [move(Source, Target)]) :-
+    !.  % Base case: Move 1 disc from Source to Target
+
+hanoi(N, Source, Target, Auxiliary, Moves) :-
+    N > 1,
+    M is N - 1,
+    hanoi(M, Source, Auxiliary, Target, Moves1),  % Move N-1 discs from Source to Auxiliary
+    hanoi(1, Source, Target, _, MoveSingle),      % Move 1 disc from Source to Target
+    hanoi(M, Auxiliary, Target, Source, Moves2),  % Move N-1 discs from Auxiliary to Target
+    append(Moves1, MoveSingle, TempMoves),        % Combine first set of moves
+    append(TempMoves, Moves2, Moves).             % Combine all moves into the final list

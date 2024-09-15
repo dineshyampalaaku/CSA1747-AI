@@ -1,0 +1,38 @@
+def water_jug_steps():
+    # Initialize the jugs
+    j1, j2 = 0, 0  # j1: 4-liter jug, j2: 3-liter jug
+
+    # Print the initial state
+    print(f"Step 1: j1={j1}L, j2={j2}L")
+
+    # Step 2: Fill j2 (3-liter jug) completely
+    j2 = 3
+    print(f"Step 2: j1={j1}L, j2={j2}L")
+
+    # Pour water from j2 into j1
+    transfer = min(j2, 4 - j1)  # Amount to transfer
+    j1 += transfer
+    j2 -= transfer
+    print(f"Step 3: j1={j1}L, j2={j2}L")
+
+    # Fill j2 (3-liter jug) completely again
+    j2 = 3
+    print(f"Step 4: j1={j1}L, j2={j2}L")
+
+    # Pour water from j2 into j1
+    transfer = min(j2, 4 - j1)  # Amount to transfer
+    j1 += transfer
+    j2 -= transfer
+    print(f"Step 5: j1={j1}L, j2={j2}L")
+
+    # Empty j1
+    j1 = 0
+    print(f"Step 6: j1={j1}L, j2={j2}L")
+
+    # Pour remaining water from j2 into j1
+    j1 += j2
+    j2 = 0
+    print(f"Step 7: j1={j1}L, j2={j2}L")
+
+# Run the program
+water_jug_steps()

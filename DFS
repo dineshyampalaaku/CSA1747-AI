@@ -1,0 +1,18 @@
+def dfs(graph,start,visited=None):
+    if visited is None:
+        visited=set()
+    print(start,end='  ')
+    visited.add(start)
+    for negi in graph[start]:
+        if negi not in visited:
+            dfs(graph,negi,visited)
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+print("DFS:")
+dfs(graph,'A')

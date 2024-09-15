@@ -1,0 +1,21 @@
+% Simple facts about what the monkey needs to do
+action(get_chair, 'Monkey gets the chair').
+action(move_chair_under_bananas, 'Monkey moves the chair under the bananas').
+action(get_stick, 'Monkey picks up the stick').
+action(stand_on_chair, 'Monkey stands on the chair').
+action(knock_bananas, 'Monkey knocks the bananas down with the stick').
+
+% Rule: the sequence of actions to get the bananas
+sequence_of_actions([get_chair, move_chair_under_bananas, get_stick, stand_on_chair, knock_bananas]).
+
+% Rule to print each action in the sequence
+print_actions([]).
+print_actions([Action|Rest]) :-
+    action(Action, Description),
+    writeln(Description),
+    print_actions(Rest).
+
+% Solve the problem by printing all actions in the correct sequence
+solve :-
+    sequence_of_actions(Actions),
+    print_actions(Actions).

@@ -1,0 +1,21 @@
+% Facts: disease_diet(Disease, RecommendedDiet)
+disease_diet(diabetes, 'Low sugar, high fiber diet').
+disease_diet(hypertension, 'Low salt, high potassium diet').
+disease_diet(heart_disease, 'Low fat, high omega-3 diet').
+disease_diet(kidney_disease, 'Low sodium, low phosphorus diet').
+disease_diet(obesity, 'Low calorie, high protein diet').
+disease_diet(anemia, 'Iron-rich foods like spinach, red meat').
+disease_diet(gastric_ulcer, 'Bland diet, avoid spicy and acidic foods').
+
+% Rules
+
+% Recommend a diet based on the disease
+recommend_diet(Disease, RecommendedDiet) :-
+    disease_diet(Disease, RecommendedDiet).
+
+% Example queries:
+% What is the recommended diet for diabetes?
+% ?- recommend_diet(diabetes, Diet).
+%
+% What is the recommended diet for heart disease?
+% ?- recommend_diet(heart_disease, Diet).

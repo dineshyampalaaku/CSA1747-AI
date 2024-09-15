@@ -1,0 +1,9 @@
+% Base case: The sum of the first 0 digits is 0.
+sum_of_n(0, 0).
+
+% Recursive case: Sum of first N digits is N plus the sum of first N-1 digits.
+sum_of_n(N, Sum) :-
+    N > 0,
+    N1 is N - 1,
+    sum_of_n(N1, Sum1),
+    Sum is N + Sum1.

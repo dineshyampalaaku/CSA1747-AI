@@ -1,0 +1,66 @@
+% Define family members and their relationships
+
+% Facts: parent(Parent, Child)
+parent(john, mary).    % John is a parent of Mary
+parent(john, peter).   % John is a parent of Peter
+parent(mary, susan).   % Mary is a parent of Susan
+parent(mary, tom).     % Mary is a parent of Tom
+parent(peter, lisa).   % Peter is a parent of Lisa
+parent(peter, david).  % Peter is a parent of David
+parent(lisa, elizabeth). % Lisa is a parent of Elizabeth
+
+% Define gender for additional context (optional)
+male(john).
+male(peter).
+male(tom).
+male(david).
+female(mary).
+female(susan).
+female(lisa).
+female(elizabeth).
+
+% Rules
+
+% A person is a parent of another person if there is a parent-child relationship
+parent_of(Parent, Child) :- parent(Parent, Child).
+
+% A person is a child of another person if there is a parent-child relationship
+child_of(Child, Parent) :- parent(Parent, Child).
+
+% Find siblings: Share at least one parent but are not the same person
+sibling(Person1, Person2) :-
+    parent(Parent, Person1),
+    parent(Parent, Person2),
+    Person1 \= Person2.
+
+% Find grandparents: A person is a grandparent if they are a parent of a parent
+grandparent(Grandparent, Grandchild) :-
+    parent(Grandparent, Parent),
+    parent(Parent, Grandchild).
+
+% Find aunts and uncles: Sibling of a parent
+aunt_or_uncle(AuntOrUncle, NieceOrNephew) :-
+    parent(Parent, NieceOrNephew),
+    sibling(AuntOrUncle, Parent).
+
+% Find cousins: Children of a parent's siblings
+cousin(Cousin, Person) :-
+    parent(Parent1, Cousin),
+    parent(Parent2, Person),
+    sibling(Parent1, Parent2).
+
+% Example Queries
+% Find all children of John
+% ?- parent_of(john, Child).
+
+% Find all siblings of Susan
+% ?- sibling(susan, Sibling).
+
+% Find the grandparents of Elizabeth
+% ?- grandparent(Grandparent, elizabeth).
+
+% Find all aunts and uncles of Elizabeth
+% ?- aunt_or_uncle(AuntOrUncle, elizabeth).
+
+% Find all cousins of Tom
+% ?- cousin(Cousin, tom).
